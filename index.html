@@ -1,41 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Looping Video</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-    html, body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        background: #000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    video {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: cover;
-    }
-</style>
+    <meta charset="UTF-8">
+    <title>nanana</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        video {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
 </head>
 <body>
 
-<video id="video" autoplay muted playsinline>
+<video controls autoplay loop>
     <source src="s.mp4" type="video/mp4">
-    ur browser ancient twin
+    Your browser does not support the video tag.
 </video>
-
-<script>
-const vid = document.getElementById('video');
-
-vid.addEventListener('ended', () => {
-    vid.currentTime = 0;
-    vid.play();
-});
-</script>
 
 </body>
 </html>
