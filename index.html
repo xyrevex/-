@@ -21,10 +21,29 @@
 </head>
 <body>
 
-<video controls autoplay loop>
-    <source src="s.mp4" type="video/mp4">
+<video id="player" controls autoplay loop playsinline>
+    <source id="videoSource" src="" type="video/mp4">
     Your browser does not support the video tag.
 </video>
+
+<script>
+    const path = window.location.pathname.toLowerCase().replace(/\/+$/, "");
+
+    const videos = {
+        "/ralsei": "s.mp4",
+        "/multifandom": "Chipi Chipi Chapa Chapa ｜｜ Multifandom.mp4",
+        "/hyperbaiter": "https://github.com/xyrevex/-/releases/download/a/HYPERBAITER.mp4"
+    };
+
+    const videoSrc = videos[path] || "s.mp4";
+
+    const video = document.getElementById("player");
+    const source = document.getElementById("videoSource");
+
+    source.src = videoSrc;
+    video.load();
+    video.play();
+</script>
 
 </body>
 </html>
