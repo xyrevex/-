@@ -21,17 +21,17 @@
 </head>
 <body>
 
-<video id="player" controls autoplay loop playsinline>
-    <source id="videoSource" src="" type="video/mp4">
-    Your browser does not support the video tag.
+<video id="player" autoplay loop controls playsinline>
+    <source id="videoSource" type="video/mp4">
 </video>
 
 <script>
-    const path = window.location.pathname.toLowerCase().replace(/\/+$/, "");
+    const fullPath = window.location.pathname;
+    const path = fullPath.replace(/^\/-/, "").toLowerCase().replace(/\/+$/, "");
 
     const videos = {
         "/ralsei": "s.mp4",
-        "/multifandom": "Chipi Chipi Chapa Chapa ｜｜ Multifandom.mp4",
+        "/multifandom": "multifandom.mp4",
         "/hyperbaiter": "https://github.com/xyrevex/-/releases/download/a/HYPERBAITER.mp4"
     };
 
