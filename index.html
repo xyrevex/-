@@ -27,10 +27,8 @@
 </video>
 
 <script>
-    // Clean pathname (no trailing slash, lowercase)
     const fullPath = window.location.pathname.replace(/\/+$/, "").toLowerCase();
 
-    // Remove the repo name "/-"
     const path = fullPath.replace(/^\/-/, "") || "/";
 
     const videos = {
