@@ -12,28 +12,23 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            cursor: pointer;
         }
-
         video {
-            max-width: 90vw;
-            max-height: 90vh;
-            display: none;
+            max-width: 100%;
+            max-height: 100%;
         }
     </style>
 </head>
 <body>
 
-<video
-    id="player"
-    loop
-    playsinline
->
+<video id="player" autoplay loop controls playsinline>
     <source id="videoSource" type="video/mp4">
+    Your browser does not support the video tag.
 </video>
 
 <script>
     const fullPath = window.location.pathname.replace(/\/+$/, "").toLowerCase();
+
     const path = fullPath.replace(/^\/-/, "") || "/";
 
     const videos = {
@@ -51,20 +46,8 @@
     const source = document.getElementById("videoSource");
 
     source.src = videos[path] || "s.mp4";
-
-    let started = false;
-
-    document.body.addEventListener("click", () => {
-        if (started) return;
-        started = true;
-
-        video.style.display = "block";
-        video.muted = false;
-        video.volume = 1;
-
-        video.load();
-        video.play();
-    }, { once: true });
+    video.load();
+    video.play();
 </script>
 
 </body>
