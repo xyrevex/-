@@ -4,8 +4,10 @@
 --add looping the rooms
 --add the catch my heart vids
 --update 404.html
---do smth with index.html
---add the other bendy variants
+--do smth with index.html, maybe a home page?
+--add the other bendy variants (10 hour ver, 23 mb 10h ver, 25mb 10h ver etc)
+--add the 100 hour apple
 --add other songs idk
 --add "We Are Japanese Goblin" song i fogor exact name
 --add colorized bad apple
+--add let me out by hallo cell
