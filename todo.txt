@@ -11,3 +11,4 @@
 --add "We Are Japanese Goblin" song i fogor exact name
 --add colorized bad apple
 --add let me out by hallo cell
+--add a way ppl can request songs thru a form or smth
