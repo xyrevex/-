@@ -1,0 +1,11 @@
+--add execution clap full
+--add signaling full
+--add that one candy style edit
+--add looping the rooms
+--add the catch my heart vids
+--update 404.html
+--do smth with index.html
+--add the other bendy variants
+--add other songs idk
+--add "We Are Japanese Goblin" song i fogor exact name
+--add colorized bad apple
