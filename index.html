@@ -298,11 +298,15 @@
             <div class="thumb">
                 <video class="preview" muted playsinline loop preload="none" data-src="${previewSrc}" data-loaded="0"></video>
             </div>
+            
             <div class="name">${name}</div>
             <div class="path">${href}</div>
         `;
 
         const preview = card.querySelector(".preview");
+        preview.addEventListener("error", (e) => {
+        console.log("Preview failed:", preview.dataset.src);
+        });
 
         card.addEventListener("mouseenter", () => {
             if (activePreview && activePreview !== preview) {
@@ -314,11 +318,11 @@
                 preview.dataset.loaded = "1";
 
                 preview.addEventListener("loadedmetadata", () => {
-                    preview.currentTime = Math.min(5, Math.max(0, preview.duration - 0.1));
+                    preview.currentTime = 0.1;
                     preview.play().catch(() => {});
                 }, { once: true });
             } else {
-                preview.currentTime = Math.min(5, Math.max(0, preview.duration - 0.1));
+                preview.currentTime = 0.1;
                 preview.play().catch(() => {});
             }
 
