@@ -2,19 +2,23 @@
 
 ---------VIDEOS---------
 
---add the catch my heart vids
 --add the 100 hour apple
 
 
 ---------index.html---------
 --add a way ppl can request songs thru a form or smth
 --make previews less laggy
-
+--fix notes
 
 
 ---------404.html---------
---the catch my heart videos
+--fix notes
 
 
 ---------backend shi---------
 --DEFINITELY streamline the process of adding things
+
+
+
+--notes
+--fix looping the rooms, let me out, japanese goblin, add miku
