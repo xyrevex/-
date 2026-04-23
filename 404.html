@@ -78,9 +78,13 @@
     const video = document.getElementById("player");
     const source = document.getElementById("videoSource");
 
-    source.src = videos[path] || "s.mp4";
-    video.load();
-    video.play();
+    if (!videos[path]) {
+        window.location.href = "/index.html";
+    } else {
+        source.src = videos[path];
+        video.load();
+        video.play();
+    }
 </script>
 
 </body>
