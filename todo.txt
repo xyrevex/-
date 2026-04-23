@@ -1,10 +1,12 @@
----------VIDEOS:
+// wow this looks so sigma with the --------- but it makes it look so ai generated
+
+---------VIDEOS---------
 
 --add the catch my heart vids
 --add the 100 hour apple
 
 
-----------FUNCTIONS:
+---------FUNCTIONS---------
 --do smth with index.html, maybe a home page?
 
 --add a way ppl can request songs thru a form or smth
@@ -15,10 +17,5 @@
 
 
 
---ADD TO 404.HTML:
-add the candy edit (in releases)
-looping.mp4
-bendy_23mb.mp4
+---------ADD TO 404.HTML---------
 the catch my heart videos
-WE ARE JAPANESE GOBLIN.mp4 (in releases)
-let me out.mp4
