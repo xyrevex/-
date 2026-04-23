@@ -6,14 +6,15 @@
 --add the 100 hour apple
 
 
----------FUNCTIONS---------
+---------index.html---------
 --add a way ppl can request songs thru a form or smth
-
---maybe streamline the process of adding things? idek
-
---polish up the video system
+--make previews less laggy
 
 
 
----------ADD TO 404.HTML---------
+---------404.html---------
 --the catch my heart videos
+
+
+---------backend shi---------
+--DEFINITELY streamline the process of adding things
