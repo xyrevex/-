@@ -101,15 +101,17 @@
             aspect-ratio: 16 / 9;
             width: 100%;
             border-radius: 11px;
-            background:
-                linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02)),
-                #181818;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 13px;
-            color: #b8b8b8;
+            background: #181818;
             overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .preview {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            background: #111;
         }
 
         .thumb span {
@@ -215,32 +217,53 @@
         "/candy style edit": "https://github.com/xyrevex/-/releases/download/candy/candystyleedit.mp4"
         };
 
-        const grid = document.getElementById("videoGrid");
-        const count = document.getElementById("videoCount");
-        const origin = window.location.origin + "/-/";
+    const grid = document.getElementById("videoGrid");
+    const count = document.getElementById("videoCount");
+    const origin = window.location.origin + "/-/";
+    const entries = Object.entries(videos).filter(([key]) => key !== "/");
 
-        const entries = Object.entries(videos).filter(([key]) => key !== "/");
+    count.textContent = `${entries.length} video${entries.length === 1 ? "" : "s"}`;
 
-        count.textContent = `${entries.length} video${entries.length === 1 ? "" : "s"}`;
+    for (const [key, value] of entries) {
+        const card = document.createElement("a");
+        const name = key.replace(/^\//, "");
+        const href = /^https?:\/\//i.test(value) ? value : origin + value;
 
-        for (const [key, value] of entries) {
-            const card = document.createElement("a");
-            const name = key.replace(/^\//, "");
-            const href = /^https?:\/\//i.test(value) ? value : origin + value;
+        card.className = "card";
+        card.href = href;
+        card.target = "_blank";
+        card.rel = "noopener noreferrer";
 
-            card.className = "card";
-            card.href = href;
-            card.target = "_blank";
-            card.rel = "noopener noreferrer";
+        card.innerHTML = `
+            <div class="thumb">
+                <video class="preview" src="${href}" muted playsinline preload="metadata"></video>
+            </div>
+            <div class="name">${name}</div>
+            <div class="path">${href}</div>
+        `;
 
-            card.innerHTML = `
-                <div class="thumb"><span>${value.split("/").pop()}</span></div>
-                <div class="name">${name}</div>
-                <div class="path">${href}</div>
-            `;
+        const preview = card.querySelector(".preview");
 
-            grid.appendChild(card);
-        }
-    </script>
+        preview.addEventListener("loadeddata", () => {
+            preview.currentTime = 0.1;
+        });
+
+        card.addEventListener("mouseenter", () => {
+            preview.play().catch(() => {});
+        });
+
+        card.addEventListener("mouseleave", () => {
+            preview.pause();
+            preview.currentTime = 0.1;
+        });
+
+        grid.appendChild(card);
+    }
+</script>
 </body>
 </html>
+
+
+
+
+
