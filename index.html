@@ -255,30 +255,37 @@
             <div class="path">${href}</div>
         `;
 
-        const preview = card.querySelector(".preview");
+const preview = card.querySelector(".preview");
 
-        card.addEventListener("mouseenter", () => {
-            if (activePreview && activePreview !== preview) {
-                stopPreview(activePreview, true);
-            }
+card.addEventListener("mouseenter", () => {
+    if (activePreview && activePreview !== preview) {
+        stopPreview(activePreview, true);
+    }
 
-            if (preview.dataset.loaded !== "1") {
-                preview.src = preview.dataset.src;
-                preview.dataset.loaded = "1";
-            }
+    if (preview.dataset.loaded !== "1") {
+        preview.src = preview.dataset.src;
+        preview.dataset.loaded = "1";
 
-            activePreview = preview;
+        preview.addEventListener("loadedmetadata", () => {
+            preview.currentTime = Math.min(5, Math.max(0, preview.duration - 0.1));
             preview.play().catch(() => {});
-        });
+        }, { once: true });
+    } else {
+        preview.currentTime = Math.min(5, Math.max(0, preview.duration - 0.1));
+        preview.play().catch(() => {});
+    }
 
-        card.addEventListener("mouseleave", () => {
-            stopPreview(preview, true);
-            if (activePreview === preview) {
-                activePreview = null;
-            }
-        });
+    activePreview = preview;
+});
 
-        grid.appendChild(card);
+card.addEventListener("mouseleave", () => {
+    stopPreview(preview, true);
+    if (activePreview === preview) {
+        activePreview = null;
+    }
+});
+
+grid.appendChild(card);
     }
 </script>
 </body>
