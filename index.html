@@ -209,7 +209,7 @@
         "/femboy": "femby.mp4",
         "/spongebob": "https://github.com/xyrevex/-/releases/download/spongebob/spongebob.mp4",
         "/marvin": "marvin.mp4",
-        "/execution clap": "executionoutput.mp4",
+        "/execution clap": "executionouput.mp4",
         "/looping the rooms": "looping.mp4",
         "/bendy": "bendy_23mb.mp4",
         "/let me out": "let me out.mp4",
@@ -269,7 +269,10 @@
     function stopPreview(video, unload = false) {
         if (!video) return;
         video.pause();
-        video.currentTime = 0;
+
+        try {
+            video.currentTime = 0.1;
+        } catch {}
 
         if (unload) {
             video.removeAttribute("src");
@@ -296,16 +299,24 @@
 
         card.innerHTML = `
             <div class="thumb">
-                <video class="preview" muted playsinline loop preload="none" data-src="${previewSrc}" data-loaded="0"></video>
+                <video
+                    class="preview"
+                    muted
+                    playsinline
+                    loop
+                    preload="none"
+                    data-src="${previewSrc}"
+                    data-loaded="0"
+                ></video>
             </div>
-            
             <div class="name">${name}</div>
             <div class="path">${href}</div>
         `;
 
         const preview = card.querySelector(".preview");
-        preview.addEventListener("error", (e) => {
-        console.log("Preview failed:", preview.dataset.src);
+
+        preview.addEventListener("error", () => {
+            console.log("Preview failed:", preview.dataset.src);
         });
 
         card.addEventListener("mouseenter", () => {
@@ -317,12 +328,16 @@
                 preview.src = preview.dataset.src;
                 preview.dataset.loaded = "1";
 
-                preview.addEventListener("loadedmetadata", () => {
-                    preview.currentTime = 0.1;
+                preview.addEventListener("loadeddata", () => {
+                    try {
+                        preview.currentTime = 0.1;
+                    } catch {}
                     preview.play().catch(() => {});
                 }, { once: true });
             } else {
-                preview.currentTime = 0.1;
+                try {
+                    preview.currentTime = 0.1;
+                } catch {}
                 preview.play().catch(() => {});
             }
 
@@ -331,6 +346,7 @@
 
         card.addEventListener("mouseleave", () => {
             stopPreview(preview, true);
+
             if (activePreview === preview) {
                 activePreview = null;
             }
