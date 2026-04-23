@@ -17,3 +17,6 @@
 --do smth with index.html, maybe a home page?
 --update 404.html
 --add a way ppl can request songs thru a form or smth
+--maybe do a homepage with index.html (oh shit i already wrote that lmfao)
+--maybe streamline the process of adding things? idek
+--polish up the video system
