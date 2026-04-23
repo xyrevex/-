@@ -175,8 +175,90 @@
         <div class="footer">pls works</div>
     </div>
 
+    
 <script>
-const routes = {
+    const videos = {
+        "/ralsei": "s.mp4",
+        "/multifandom": "multifandom.mp4",
+        "/hyperbaiter": "https://github.com/xyrevex/-/releases/download/a/HYPERBAITER.mp4",
+        "/gerson": "gerson.mov",
+        "/bumblebee": "bumblebee.mp4",
+        "/bad apple": "https://github.com/xyrevex/-/releases/download/baapple/badapple.mp4",
+        "/macaron": "https://github.com/xyrevex/-/releases/download/Macoron/LiarMacoron.mp4",
+        "/chicken": "https://github.com/xyrevex/-/releases/download/chicken/chicken.mp4",
+        "/cry 4 me": "cry4me.mp4",
+        "/megumin": "Megumin.mp4",
+        "/deltarune": "Deltarune.mp4",
+        "/ayla1": "ayla1.mp4",
+        "/ayla2": "ayla2.mp4",
+        "/ayla3": "https://github.com/xyrevex/-/releases/download/Ayla3/ayla3.mp4",
+        "/ayla4": "https://github.com/xyrevex/-/releases/download/Ayla4/Ayla4.mp4",
+        "/split dance": "https://github.com/xyrevex/-/releases/download/SplitDance/SplitDance.mp4",
+        "/shi": "shi.mp4",
+        "/teto": "teto.mp4",
+        "/photo ID": "Photo ID - CAMOOH (1080p, h264).mov",
+        "/dare": "dare.mp4",
+        "/six little eggs": "sixlittleeggs.mp4",
+        "/minecraft": "https://github.com/xyrevex/-/releases/download/mc%2Bjealousy/minecraft.mp4",
+        "/jealousy": "https://github.com/xyrevex/-/releases/download/mc%2Bjealousy/jealousy.mp4",
+        "/car": "car.mp4",
+        "/weird": "weird.mp4",
+        "/caine": "cainewhat.mp4",
+        "/bang": "bang.mp4",
+        "/bangbang": "bangbang.mp4",
+        "/femboy": "femby.mp4",
+        "/spongebob": "https://github.com/xyrevex/-/releases/download/spongebob/spongebob.mp4",
+        "/marvin": "marvin.mp4",
+        "/execution clap": "executionouput.mp4",
+        "/looping the rooms": "looping.mp4",
+        "/bendy": "bendy_23mb.mp4",
+        "/let me out": "let me out.mp4",
+        "/we are japanese goblin": "https://github.com/xyrevex/-/releases/download/goblin/WE.ARE.JAPANESE.GOBLIN.mp4",
+        "/candy style edit": "https://github.com/xyrevex/-/releases/download/candy/candystyleedit.mp4"
+    };
+
+    const routes = {
+        "/ralsei": "/ralsei",
+        "/multifandom": "/multifandom",
+        "/hyperbaiter": "/hyperbaiter",
+        "/gerson": "/gerson",
+        "/bumblebee": "/bumblebee",
+        "/bad apple": "/badapple",
+        "/macaron": "/macaron",
+        "/chicken": "/chicken",
+        "/cry 4 me": "/cry4me",
+        "/megumin": "/megumin",
+        "/deltarune": "/deltarune",
+        "/ayla1": "/ayla1",
+        "/ayla2": "/ayla2",
+        "/ayla3": "/ayla3",
+        "/ayla4": "/ayla4",
+        "/split dance": "/splitdance",
+        "/shi": "/shi",
+        "/teto": "/teto",
+        "/photo ID": "/photoid",
+        "/dare": "/dare",
+        "/six little eggs": "/sixeggs",
+        "/minecraft": "/minecraft",
+        "/jealousy": "/jealousy",
+        "/car": "/car",
+        "/weird": "/weird",
+        "/caine": "/caine",
+        "/bang": "/bang",
+        "/bangbang": "/bangbang",
+        "/femboy": "/femboy",
+        "/spongebob": "/spongebob",
+        "/marvin": "/marvin",
+        "/execution clap": "/executionclap",
+        "/looping the rooms": "/looping",
+        "/bendy": "/bendy",
+        "/let me out": "/letmeout",
+        "/we are japanese goblin": "/wearejapanesegoblin",
+        "/candy style edit": "/candystyleedit"
+    };
+
+
+    const routes = {
     "/ralsei": "/ralsei",
     "/multifandom": "/multifandom",
     "/hyperbaiter": "/hyperbaiter",
@@ -216,66 +298,86 @@ const routes = {
     "/candy style edit": "/candystyleedit"
 };
 
-for (const [key, value] of entries) {
-    const card = document.createElement("a");
-    const name = key.replace(/^\//, "");
+    const grid = document.getElementById("videoGrid");
+    const count = document.getElementById("videoCount");
+    const origin = window.location.origin + "/-/";
+    const entries = Object.entries(videos).filter(([key]) => key !== "/");
 
-    const route = routes[key] || key;
-    const href = origin + route.replace(/^\//, "");
+    count.textContent = `${entries.length} video${entries.length === 1 ? "" : "s"}`;
 
-    const previewSrc = /^https?:\/\//i.test(value)
-        ? value
-        : origin + value;
+    let activePreview = null;
 
-    card.className = "card";
-    card.href = href;
-    card.target = "_blank";
-    card.rel = "noopener noreferrer";
+    function stopPreview(video, unload = false) {
+        if (!video) return;
+        video.pause();
+        video.currentTime = 0;
 
-    card.innerHTML = `
-        <div class="thumb">
-            <video class="preview" muted playsinline loop preload="none" data-src="${previewSrc}" data-loaded="0"></video>
-        </div>
-        <div class="name">${name}</div>
-        <div class="path">${href}</div>
-    `;
-
-    const preview = card.querySelector(".preview");
-
-    card.addEventListener("mouseenter", () => {
-        if (activePreview && activePreview !== preview) {
-            stopPreview(activePreview, true);
+        if (unload) {
+            video.removeAttribute("src");
+            video.load();
+            video.dataset.loaded = "0";
         }
+    }
 
-        if (preview.dataset.loaded !== "1") {
-            preview.src = preview.dataset.src;
-            preview.dataset.loaded = "1";
+    for (const [key, value] of entries) {
+        const card = document.createElement("a");
+        const name = key.replace(/^\//, "");
 
-            preview.addEventListener("loadedmetadata", () => {
+        const route = routes[key] || key;
+        const href = origin + route.replace(/^\//, "");
+
+        const previewSrc = /^https?:\/\//i.test(value)
+            ? value
+            : origin + value;
+
+        card.className = "card";
+        card.href = href;
+        card.target = "_blank";
+        card.rel = "noopener noreferrer";
+
+        card.innerHTML = `
+            <div class="thumb">
+                <video class="preview" muted playsinline loop preload="none" data-src="${previewSrc}" data-loaded="0"></video>
+            </div>
+            <div class="name">${name}</div>
+            <div class="path">${href}</div>
+        `;
+
+        const preview = card.querySelector(".preview");
+
+        card.addEventListener("mouseenter", () => {
+            if (activePreview && activePreview !== preview) {
+                stopPreview(activePreview, true);
+            }
+
+            if (preview.dataset.loaded !== "1") {
+                preview.src = preview.dataset.src;
+                preview.dataset.loaded = "1";
+
+                preview.addEventListener("loadedmetadata", () => {
+                    preview.currentTime = Math.min(5, Math.max(0, preview.duration - 0.1));
+                    preview.play().catch(() => {});
+                }, { once: true });
+            } else {
                 preview.currentTime = Math.min(5, Math.max(0, preview.duration - 0.1));
                 preview.play().catch(() => {});
-            }, { once: true });
-        } else {
-            preview.currentTime = Math.min(5, Math.max(0, preview.duration - 0.1));
-            preview.play().catch(() => {});
-        }
+            }
 
-        activePreview = preview;
-    });
+            activePreview = preview;
+        });
 
-    card.addEventListener("mouseleave", () => {
-        stopPreview(preview, true);
-        if (activePreview === preview) {
-            activePreview = null;
-        }
-    });
+        card.addEventListener("mouseleave", () => {
+            stopPreview(preview, true);
+            if (activePreview === preview) {
+                activePreview = null;
+            }
+        });
 
-    grid.appendChild(card);
-}
+        grid.appendChild(card);
+    }
 </script>
 </body>
 </html>
-
 
 
 
