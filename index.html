@@ -2,37 +2,179 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>nanana</title>
+    <title>xyrevex video dump</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        :root {
+            color-scheme: dark;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
-            background: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 35%),
+                linear-gradient(180deg, #111 0%, #090909 100%);
+            color: #f3f3f3;
+            font-family: Arial, Helvetica, sans-serif;
         }
-        video {
-            max-width: 100%;
-            max-height: 100%;
+
+        .wrap {
+            width: min(1100px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 40px 0 56px;
+        }
+
+        .hero {
+            margin-bottom: 28px;
+            padding: 22px 24px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 18px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.28);
+        }
+
+        .hero h1 {
+            margin: 0 0 8px;
+            font-size: clamp(28px, 4vw, 44px);
+            line-height: 1;
+            letter-spacing: -0.03em;
+        }
+
+        .hero p {
+            margin: 0;
+            color: #bdbdbd;
+            font-size: 15px;
+            line-height: 1.5;
+            max-width: 720px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            align-items: end;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+
+        .topbar h2 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .count {
+            color: #9d9d9d;
+            font-size: 14px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 14px;
+        }
+
+        .card {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            background: rgba(255,255,255,0.045);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 14px;
+            transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            background: rgba(255,255,255,0.07);
+            border-color: rgba(255,255,255,0.16);
+        }
+
+        .thumb {
+            aspect-ratio: 16 / 9;
+            width: 100%;
+            border-radius: 11px;
+            background:
+                linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02)),
+                #181818;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            color: #b8b8b8;
+            overflow: hidden;
+        }
+
+        .thumb span {
+            padding: 10px;
+            text-align: center;
+            word-break: break-word;
+        }
+
+        .name {
+            margin-top: 11px;
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1.25;
+        }
+
+        .path {
+            margin-top: 5px;
+            font-size: 12px;
+            color: #9d9d9d;
+            word-break: break-all;
+        }
+
+        .footer {
+            margin-top: 28px;
+            color: #787878;
+            font-size: 13px;
+        }
+
+        @media (max-width: 560px) {
+            .wrap {
+                width: min(100% - 20px, 1100px);
+                padding-top: 20px;
+                padding-bottom: 28px;
+            }
+
+            .hero {
+                padding: 18px;
+                border-radius: 14px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="wrap">
+        <section class="hero">
+            <h1>xyrevex video dump</h1>
+            <p>a tiny pile of random videos for embeds, links, and whatever else. click anything and it opens the file in a new tab.</p>
+        </section>
 
-<video id="player" autoplay loop controls playsinline>
-    <source id="videoSource" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
+        <div class="topbar">
+            <h2>videos</h2>
+            <div class="count" id="videoCount"></div>
+        </div>
 
-<script>
-    const fullPath = window.location.pathname.replace(/\/+$/, "").toLowerCase();
+        <div class="grid" id="videoGrid"></div>
 
-    const path = fullPath.replace(/^\/-/, "") || "/";
+        <div class="footer">nothing fancy, it just works</div>
+    </div>
 
-    const videos = {
-        "/": "s.mp4",
+    <script>
+        const videos = {
         "/ralsei": "s.mp4",
         "/multifandom": "multifandom.mp4",
         "/hyperbaiter": "https://github.com/xyrevex/-/releases/download/a/HYPERBAITER.mp4",
@@ -48,18 +190,57 @@
         "/ayla1": "ayla1.mp4",
         "/ayla2": "ayla2.mp4",
         "/ayla3": "https://github.com/xyrevex/-/releases/download/Ayla3/ayla3.mp4",
-        "/splitdance": "https://github.com/xyrevex/-/releases/download/SplitDance/SplitDance.mp4"
+        "/ayla4": "https://github.com/xyrevex/-/releases/download/Ayla4/Ayla4.mp4",
+        "/splitdance": "https://github.com/xyrevex/-/releases/download/SplitDance/SplitDance.mp4",
+        "/shi": "shi.mp4",
+        "/teto": "teto.mp4",
+        "/photoid": "Photo ID - CAMOOH (1080p, h264).mov",
+        "/dare": "dare.mp4",
+        "/sixeggs": "sixlittleeggs.mp4",
+        "/minecraft": "https://github.com/xyrevex/-/releases/download/mc%2Bjealousy/minecraft.mp4",
+        "/jealousy": "https://github.com/xyrevex/-/releases/download/mc%2Bjealousy/jealousy.mp4",
+        "/car": "car.mp4",
+        "/weird": "weird.mp4",
+        "/caine": "cainewhat.mp4",
+        "/bang": "bang.mp4",
+        "/bangbang": "bangbang.mp4",
+        "/femboy": "femby.mp4",
+        "/spongebob": "https://github.com/xyrevex/-/releases/download/spongebob/spongebob.mp4",
+        "/marvin": "marvin.mp4",
+        "/executionclap": "executionout.mp4",
+        "/looping": "looping.mp4",
+        "/bendy": "bendy_23mb.mp4",
+        "/letmeout": "let me out.mp4",
+        "/wearejapanesegoblin": "https://github.com/xyrevex/-/releases/download/goblin/WE.ARE.JAPANESE.GOBLIN.mp4",
+        "/candystyleedit": "https://github.com/xyrevex/-/releases/download/candy/candystyleedit.mp4"
+        };
 
+        const grid = document.getElementById("videoGrid");
+        const count = document.getElementById("videoCount");
+        const origin = window.location.origin + "/-/";
 
-    };
+        const entries = Object.entries(videos).filter(([key]) => key !== "/");
 
-    const video = document.getElementById("player");
-    const source = document.getElementById("videoSource");
+        count.textContent = `${entries.length} video${entries.length === 1 ? "" : "s"}`;
 
-    source.src = videos[path] || "s.mp4";
-    video.load();
-    video.play();
-</script>
+        for (const [key, value] of entries) {
+            const card = document.createElement("a");
+            const name = key.replace(/^\//, "");
+            const href = /^https?:\/\//i.test(value) ? value : origin + value;
 
+            card.className = "card";
+            card.href = href;
+            card.target = "_blank";
+            card.rel = "noopener noreferrer";
+
+            card.innerHTML = `
+                <div class="thumb"><span>${value.split("/").pop()}</span></div>
+                <div class="name">${name}</div>
+                <div class="path">${href}</div>
+            `;
+
+            grid.appendChild(card);
+        }
+    </script>
 </body>
 </html>
