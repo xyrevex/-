@@ -1,16 +1,14 @@
 ---------VIDEOS:
 
 --add the catch my heart vids
---add the bendy thing to 404.html
 --add the 100 hour apple
 --add "We Are Japanese Goblin" song i fogor exact name
 --add colorized bad apple
---add let me out by hallo cell
 
 
 ----------FUNCTIONS:
 --do smth with index.html, maybe a home page?
---update 404.html (add the candy edit, looping the rooms, bendy, the catch my heart videos, we are japanese goblin, colorized bad apple, let me out by hallo cell)
+--update 404.html (add the candy edit, looping.mp4, bendy_23mb.mp4, the catch my heart videos, we are japanese goblin, colorized bad apple, let me out.mp4)
 --add a way ppl can request songs thru a form or smth
 --maybe do a homepage with index.html (oh shit i already wrote that lmfao)
 --maybe streamline the process of adding things? idek
