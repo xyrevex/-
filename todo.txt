@@ -9,6 +9,8 @@
 ---------FUNCTIONS---------
 --do smth with index.html, maybe a home page?
 
+--add a proper fallback cuz rn it just plays s.mp4 aka the ralsei thing
+
 --add a way ppl can request songs thru a form or smth
 
 --maybe streamline the process of adding things? idek
@@ -18,4 +20,4 @@
 
 
 ---------ADD TO 404.HTML---------
-the catch my heart videos
+--the catch my heart videos
