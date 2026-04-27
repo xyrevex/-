@@ -1,17 +1,13 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>fuck this shit</title>
+    <title>my very tuff sigma video lobby</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        :root {
-            color-scheme: dark;
-        }
+        :root { color-scheme: dark; }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
@@ -102,21 +98,14 @@
             width: 100%;
             border-radius: 11px;
             background: #181818;
-            overflow: hidden;
             border: 1px solid rgba(255,255,255,0.06);
-        }
-
-        .preview {
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: cover;
-            background: #111;
-        }
-
-        .thumb span {
-            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px;
             text-align: center;
+            color: #aaa;
+            font-size: 14px;
             word-break: break-word;
         }
 
@@ -161,7 +150,7 @@
 <body>
     <div class="wrap">
         <section class="hero">
-            <h1>lobby</h1>
+            <h1>super sigma lobby</h1>
             <p>shitty ass lobby</p>
         </section>
 
@@ -175,240 +164,75 @@
         <div class="footer">pls works</div>
     </div>
 
-    
 <script>
-    const videos = {
-        "/ralsei": "s.mp4",
-        "/multifandom": "multifandom.mp4",
-        "/hyperbaiter": "https://github.com/xyrevex/-/releases/download/a/HYPERBAITER.mp4",
-        "/gerson": "gerson.mov",
-        "/bumblebee": "bumblebee.mp4",
-        "/bad apple": "https://github.com/xyrevex/-/releases/download/baapple/badapple.mp4",
-        "/macaron": "https://github.com/xyrevex/-/releases/download/Macoron/LiarMacoron.mp4",
-        "/chicken": "https://github.com/xyrevex/-/releases/download/chicken/chicken.mp4",
-        "/cry 4 me": "cry4me.mp4",
-        "/megumin": "Megumin.mp4",
-        "/deltarune": "Deltarune.mp4",
-        "/ayla1": "ayla1.mp4",
-        "/ayla2": "ayla2.mp4",
-        "/ayla3": "https://github.com/xyrevex/-/releases/download/Ayla3/ayla3.mp4",
-        "/ayla4": "https://github.com/xyrevex/-/releases/download/Ayla4/Ayla4.mp4",
-        "/split dance": "https://github.com/xyrevex/-/releases/download/SplitDance/SplitDance.mp4",
-        "/shi": "shi.mp4",
-        "/teto": "teto.mp4",
-        "/photo ID": "Photo ID - CAMOOH (1080p, h264).mov",
-        "/dare": "dare.mp4",
-        "/six little eggs": "sixlittleeggs.mp4",
-        "/minecraft": "https://github.com/xyrevex/-/releases/download/mc%2Bjealousy/minecraft.mp4",
-        "/jealousy": "https://github.com/xyrevex/-/releases/download/mc%2Bjealousy/jealousy.mp4",
-        "/car": "car.mp4",
-        "/weird": "weird.mp4",
-        "/caine": "cainewhat.mp4",
-        "/bang": "bang.mp4",
-        "/bangbang": "bangbang.mp4",
-        "/femboy": "femby.mp4",
-        "/spongebob": "https://github.com/xyrevex/-/releases/download/spongebob/spongebob.mp4",
-        "/marvin": "marvin.mp4",
-        "/execution clap": "executionoutput.mp4",
-        "/looping the rooms": "looping.mp4",
-        "/bendy": "bendy_23mb.mp4",
-        "/let me out": "let me out.mp4",
-        "/we are japanese goblin": "https://github.com/xyrevex/-/releases/download/goblin/WE.ARE.JAPANESE.GOBLIN.mp4",
-        "/candy style edit": "https://github.com/xyrevex/-/releases/download/candy/candystyleedit.mp4",
-        "/catchmyheart": "catchmyheart.mp4",
-        "/catchmyheart2": "catchmyheart2.mp4",
-        "/rushing": "rushing.mp4",
-        "/miku": "https://github.com/xyrevex/-/releases/download/miku/miku.mp4"
-    };
-
-    const routes = {
-        "/ralsei": "/ralsei",
-        "/multifandom": "/multifandom",
-        "/hyperbaiter": "/hyperbaiter",
-        "/gerson": "/gerson",
-        "/bumblebee": "/bumblebee",
-        "/bad apple": "/badapple",
-        "/macaron": "/macaron",
-        "/chicken": "/chicken",
-        "/cry 4 me": "/cry4me",
-        "/megumin": "/megumin",
-        "/deltarune": "/deltarune",
-        "/ayla1": "/ayla1",
-        "/ayla2": "/ayla2",
-        "/ayla3": "/ayla3",
-        "/ayla4": "/ayla4",
-        "/split dance": "/splitdance",
-        "/shi": "/shi",
-        "/teto": "/teto",
-        "/photo ID": "/photoid",
-        "/dare": "/dare",
-        "/six little eggs": "/sixeggs",
-        "/minecraft": "/minecraft",
-        "/jealousy": "/jealousy",
-        "/car": "/car",
-        "/weird": "/weird",
-        "/caine": "/caine",
-        "/bang": "/bang",
-        "/bangbang": "/bangbang",
-        "/femboy": "/femboy",
-        "/spongebob": "/spongebob",
-        "/marvin": "/marvin",
-        "/execution clap": "/executionclap",
-        "/looping the rooms": "/looping",
-        "/bendy": "/bendy",
-        "/let me out": "/letmeout",
-        "/we are japanese goblin": "/wearejapanesegoblin",
-        "/candy style edit": "/candystyleedit",
-        "/catch my heart": "catchmyheart",
-        "/catch my heart2": "catchmyheart2",
-        "/rushing": "rushing",
-        "/miku": "miku"
-    };
+    const videos = [
+        ["ralsei", "ralsei"],
+        ["multifandom", "multifandom"],
+        ["hyperbaiter", "hyperbaiter"],
+        ["gerson", "gerson"],
+        ["bumblebee", "bumblebee"],
+        ["bad apple", "badapple"],
+        ["macaron", "macaron"],
+        ["chicken", "chicken"],
+        ["cry 4 me", "cry4me"],
+        ["megumin", "megumin"],
+        ["deltarune", "deltarune"],
+        ["ayla1", "ayla1"],
+        ["ayla2", "ayla2"],
+        ["ayla3", "ayla3"],
+        ["ayla4", "ayla4"],
+        ["split dance", "splitdance"],
+        ["shi", "shi"],
+        ["teto", "teto"],
+        ["photo ID", "photoid"],
+        ["dare", "dare"],
+        ["six little eggs", "sixeggs"],
+        ["minecraft", "minecraft"],
+        ["jealousy", "jealousy"],
+        ["car", "car"],
+        ["weird", "weird"],
+        ["caine", "caine"],
+        ["bang", "bang"],
+        ["bangbang", "bangbang"],
+        ["femboy", "femboy"],
+        ["spongebob", "spongebob"],
+        ["marvin", "marvin"],
+        ["execution clap", "executionclap"],
+        ["looping the rooms", "looping"],
+        ["bendy", "bendy"],
+        ["let me out", "letmeout"],
+        ["we are japanese goblin", "wearejapanesegoblin"],
+        ["candy style edit", "candystyleedit"],
+        ["catchmyheart", "catchmyheart"],
+        ["catchmyheart2", "catchmyheart2"],
+        ["rushing", "rushing"],
+        ["miku", "miku"],
+        ["waguri", "waguri"]
+    ];
 
     const grid = document.getElementById("videoGrid");
     const count = document.getElementById("videoCount");
     const origin = window.location.origin + "/-/";
-    const entries = Object.entries(videos).filter(([key]) => key !== "/");
 
-    count.textContent = `${entries.length} video${entries.length === 1 ? "" : "s"}`;
+    count.textContent = `${videos.length} video${videos.length === 1 ? "" : "s"}`;
 
-    let activePreview = null;
-    const previewsToWarm = [];
-    const BATCH_SIZE = 6;
-    const BATCH_DELAY = 100;
+    for (const [name, route] of videos) {
+        const href = origin + route;
 
-    function warmPreview(video) {
-        return new Promise((resolve) => {
-            if (!video || video.dataset.warmed === "1") {
-                resolve();
-                return;
-            }
-
-            const done = () => {
-                video.dataset.warmed = "1";
-                resolve();
-            };
-
-            const fail = () => {
-                console.log("Preview failed:", video.dataset.src);
-                video.dataset.warmed = "1";
-                resolve();
-            };
-
-            video.addEventListener("loadeddata", () => {
-                try {
-                    video.currentTime = 0.1;
-                } catch {}
-                done();
-            }, { once: true });
-
-            video.addEventListener("error", fail, { once: true });
-
-            video.src = video.dataset.src;
-            video.load();
-
-            setTimeout(done, 4000);
-        });
-    }
-
-    async function warmPreviewsInBatches() {
-        for (let i = 0; i < previewsToWarm.length; i += BATCH_SIZE) {
-            const batch = previewsToWarm.slice(i, i + BATCH_SIZE);
-            await Promise.all(batch.map(warmPreview));
-
-            if (i + BATCH_SIZE < previewsToWarm.length) {
-                await new Promise(resolve => setTimeout(resolve, BATCH_DELAY));
-            }
-        }
-    }
-
-    for (const [key, value] of entries) {
         const card = document.createElement("a");
-        const name = key.replace(/^\//, "");
-
-        const route = routes[key] || key;
-        const href = origin + route.replace(/^\//, "");
-
-        const previewSrc = /^https?:\/\//i.test(value)
-            ? value
-            : origin + value;
-
         card.className = "card";
         card.href = href;
         card.target = "_blank";
         card.rel = "noopener noreferrer";
 
         card.innerHTML = `
-            <div class="thumb">
-                <video
-                    class="preview"
-                    muted
-                    playsinline
-                    loop
-                    preload="metadata"
-                    data-src="${previewSrc}"
-                    data-warmed="0"
-                ></video>
-            </div>
+            <div class="thumb">${name}</div>
             <div class="name">${name}</div>
             <div class="path">${href}</div>
         `;
 
-        const preview = card.querySelector(".preview");
-
-        preview.addEventListener("error", () => {
-            console.log("Preview failed:", preview.dataset.src);
-        });
-
-        card.addEventListener("mouseenter", () => {
-            if (activePreview && activePreview !== preview) {
-                activePreview.pause();
-                try {
-                    activePreview.currentTime = 0.1;
-                } catch {}
-            }
-
-            if (!preview.src) {
-                preview.src = preview.dataset.src;
-                preview.load();
-            }
-
-            const playPreview = () => {
-                try {
-                    preview.currentTime = 0.1;
-                } catch {}
-                preview.play().catch(() => {});
-            };
-
-            if (preview.readyState >= 2) {
-                playPreview();
-            } else {
-                preview.addEventListener("loadeddata", playPreview, { once: true });
-            }
-
-            activePreview = preview;
-        });
-
-        card.addEventListener("mouseleave", () => {
-            preview.pause();
-            try {
-                preview.currentTime = 0.1;
-            } catch {}
-
-            if (activePreview === preview) {
-                activePreview = null;
-            }
-        });
-
-        previewsToWarm.push(preview);
         grid.appendChild(card);
     }
-
-    warmPreviewsInBatches();
 </script>
 </body>
 </html>
-
-
-
-
